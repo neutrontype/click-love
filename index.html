@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💖 Кликер 💖</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&family=Caveat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body id="body-element"> <div class="falling-hearts" id="falling-hearts-container"></div>
+
+    <div class="container">
+        <div class="score-container">
+            натыкано: <span id="love-score">0</span>💖
+        </div>
+
+        <div class="click-area">
+            <button id="heart-button">❤️</button> </div>
+
+        <div id="phrase-display">Нажми на сердечко!</div>
+    </div>
+
+    <div id="story-panel">
+        <h3>Твоя история</h3>
+        <p class="story-part hidden" data-unlock="10">Запись 1: Просто кликаешь. Почему бы и нет.</p>
+        <p class="story-part hidden" data-unlock="30">Запись 2: Уже 30? Ладно, немного затянуло.</p>
+        <p class="story-part hidden" data-unlock="60">Запись 3: Ты не в себе?</p>
+        <p class="story-part hidden" data-unlock="100">Запись 4: Цифры растут, а ты всё кликаешь.</p>
+        <p class="story-part hidden" data-unlock="150">Запись 5: Может это даже немного успокаивает?</p>
+        <p class="story-part hidden" data-unlock="250">Запись 6: Кто бы мог подумать, что ты так далеко дойдешь.</p>
+        <p class="story-part hidden" data-unlock="300">Запись 7: Так что там с трактористом?</p>
+        <p class="story-part hidden" data-unlock="500">Запись 8: Ну вот. Уже 500. Завязывай.</p>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

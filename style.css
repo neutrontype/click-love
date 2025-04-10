@@ -1,0 +1,246 @@
+:root {
+    --bg-color-light: #fff0f5; 
+    --text-color-light: #5c3a50; 
+    --heart-color-light: #ff69b4; 
+    --accent-color-light: #ffb6c1; 
+    --story-bg-light: rgba(255, 255, 255, 0.8);
+    --bg-color-dark: #2c003e; 
+    --text-color-dark: #f0e6ff; 
+    --heart-color-dark: #ff80df; 
+    --accent-color-dark: #a450a4; 
+    --story-bg-dark: rgba(0, 0, 0, 0.5);
+    --current-bg: var(--bg-color-light);
+    --current-text: var(--text-color-light);
+    --current-heart: var(--heart-color-light);
+    --current-accent: var(--accent-color-light);
+    --current-story-bg: var(--story-bg-light);
+    --heart-size: 100px;
+    --bg-gradient: linear-gradient(135deg, #fff0f5, #ffe4e1); 
+}
+
+body.dark-theme {
+    --current-bg: var(--bg-color-dark);
+    --current-text: var(--text-color-dark);
+    --current-heart: var(--heart-color-dark);
+    --current-accent: var(--accent-color-dark);
+    --current-story-bg: var(--story-bg-dark);
+    --bg-gradient: linear-gradient(135deg, #2c003e, #4a0072);
+}
+
+body.level-2 {
+    --heart-size: 110px;
+    --bg-gradient: linear-gradient(135deg, #ffefba, #ffffff); 
+}
+body.level-3 {
+    --heart-size: 120px;
+    --bg-gradient: linear-gradient(135deg, #e0ffff, #afeeee); 
+}
+ body.level-4 { 
+    --heart-size: 130px;
+}
+ body.level-5 {
+    --heart-size: 140px;
+    --bg-gradient: linear-gradient(135deg, #4a0072, #7b2cbf); 
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: var(--current-bg);
+    background-image: var(--bg-gradient);
+    color: var(--current-text);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 20px;
+    transition: background 0.8s ease;
+    position: relative; 
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1; 
+    width: 100%;
+    max-width: 600px; 
+    text-align: center;
+    z-index: 1; 
+}
+
+.score-container {
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    padding: 10px 25px;
+    border-radius: 50px;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--current-text);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: color 0.5s ease;
+}
+.score-container span {
+    font-family: 'Pacifico', cursive; 
+    margin-left: 10px;
+    color: var(--current-heart);
+    transition: color 0.5s ease;
+}
+
+.click-area {
+    margin-bottom: 30px;
+}
+
+#heart-button {
+    background: none;
+    border: none;
+    font-size: var(--heart-size); 
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: transform 0.1s ease, font-size 0.5s ease, color 0.5s ease;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+    color: var(--current-heart); 
+    user-select: none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#heart-button:hover {
+    transform: scale(1.1);
+}
+#heart-button:active {
+    transform: scale(0.9);
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+#heart-button.clicked {
+    animation: heartBeat 0.3s ease;
+}
+@keyframes heartBeat {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+#phrase-display {
+    min-height: 50px; 
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--current-text);
+    opacity: 0; 
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease, color 0.5s ease;
+    font-family: 'Caveat', cursive; 
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+    display: inline-block; 
+    max-width: 90%;
+    visibility: hidden; 
+}
+#phrase-display.visible {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible; 
+}
+
+#story-panel {
+    width: 100%;
+    max-width: 400px; 
+    background-color: var(--current-story-bg);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.8s ease, color 0.8s ease;
+    z-index: 1;
+}
+#story-panel h3 {
+    color: var(--current-text);
+    font-family: 'Pacifico', cursive;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5rem;
+    opacity: 0.9;
+    transition: color 0.5s ease;
+}
+.story-part {
+    color: var(--current-text);
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0; 
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.8s ease, max-height 0.8s ease, margin-bottom 0.8s ease;
+}
+.story-part.visible {
+     opacity: 1; 
+     max-height: 100px; 
+     margin-bottom: 10px; 
+}
+
+.falling-hearts {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none; 
+    z-index: 0; 
+}
+
+.heart-fall {
+    position: absolute;
+    top: -50px; 
+    font-size: 1.5rem; 
+    color: var(--current-accent);
+    opacity: 0.7;
+    animation: fall linear infinite;
+    user-select: none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(105vh) rotate(360deg); 
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+     :root { --heart-size: 80px; }
+     body.level-2 { --heart-size: 90px; }
+     body.level-3 { --heart-size: 100px; }
+     body.level-4 { --heart-size: 110px; }
+     body.level-5 { --heart-size: 120px; }
+
+     .score-container { font-size: 1.5rem; padding: 8px 20px; }
+     #phrase-display { font-size: 1.1rem; }
+     #story-panel { max-width: 90%; margin-top: 20px; padding: 15px;}
+     #story-panel h3 { font-size: 1.3rem; }
+     .story-part { font-size: 0.9rem; }
+}
+
+@media (max-height: 600px) { 
+    #story-panel { margin-top: 15px; }
+    .score-container { margin-bottom: 15px; }
+    .click-area { margin-bottom: 15px; }
+}
